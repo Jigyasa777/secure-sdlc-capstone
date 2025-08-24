@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Feedback</h2>
+  <form method="post">
+    <textarea name="msg" rows="3" cols="40" placeholder="Leave feedback..."></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h3>All Feedback</h3>
+  <ul>
+    {% for item in items %}
+      <li><b>{{ item.user }}</b>: {{ item.msg|safe }}</li>
+    {% endfor %}
+  </ul>
+  <p><em>Stored XSS demo: submit <code>&lt;img src=x onerror=alert('stored')&gt;</code></em></p>
+{% endblock %}

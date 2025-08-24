@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Echo Service</h2>
+  <form method="get">
+    <input type="text" name="msg" placeholder="Say something...">
+    <button type="submit">Echo</button>
+  </form>
+  {% if echoed %}
+    <p>You said: {{ echoed|safe }}</p>
+    <p><em>Try XSS payload: <code>&lt;script&gt;alert('xss')&lt;/script&gt;</code></em></p>
+  {% endif %}
+{% endblock %}
