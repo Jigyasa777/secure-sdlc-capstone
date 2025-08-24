@@ -1,5 +1,12 @@
 name: OWASP ZAP Baseline
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+# (rest unchanged)
+
 jobs:
   zap-baseline:
     runs-on: ubuntu-latest

@@ -1,4 +1,12 @@
 name: Syft SBOM
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+# (rest unchanged)
+
 on: [push, pull_request]
 jobs:
   sbom:

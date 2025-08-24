@@ -1,5 +1,12 @@
-name: Gitleaks
-on: [push, pull_request]
+name: Gitleaks Secrets Scan
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+# (rest unchanged)
+
 jobs:
   scan:
     runs-on: ubuntu-latest

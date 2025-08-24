@@ -1,7 +1,12 @@
-name: CodeQL
+name: CodeQL Analysis
 on:
-  push: { branches: [ "main" ] }
-  pull_request: { branches: [ "main" ] }
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+# (rest of your file unchanged)
+
 jobs:
   analyze:
     runs-on: ubuntu-latest

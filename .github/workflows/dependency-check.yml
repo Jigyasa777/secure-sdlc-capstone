@@ -1,5 +1,12 @@
 name: OWASP Dependency-Check
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+# (rest unchanged)
+
 jobs:
   dc:
     runs-on: ubuntu-latest

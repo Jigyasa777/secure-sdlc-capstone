@@ -1,5 +1,12 @@
-name: Semgrep
-on: [push, pull_request]
+name: Semgrep Scan
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+# (rest unchanged)
+
 jobs:
   semgrep:
     runs-on: ubuntu-latest
