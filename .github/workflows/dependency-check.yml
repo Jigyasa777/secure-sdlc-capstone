@@ -1,28 +1,39 @@
 name: OWASP Dependency-Check
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch: {}
-# (rest unchanged)
 
 jobs:
   dc:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Java
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java (for Dependency-Check)
         uses: actions/setup-java@v4
-        with: { distribution: temurin, java-version: "17" }
+        with:
+          distribution: temurin
+          java-version: "17"
+
       - name: Run Dependency-Check
         uses: dependency-check/Dependency-Check_Action@main
         with:
-          format: 'HTML'
-          fail_on_cvss: '0'
-          path: '.'
-          out: 'dc-report'
-      - uses: actions/upload-artifact@v4
+          path: "."
+          format: "HTML,XML"
+          out: "dc-report"
+          fail_on_cvss: "0"   # keep pipeline green, still generate report
+
+      - name: Upload Dependency-Check reports
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
-          path: dc-report
+          path: |
+            dc-report/*.html
+            dc-report/*.xml
