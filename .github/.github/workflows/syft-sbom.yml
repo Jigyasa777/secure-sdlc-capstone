@@ -1,0 +1,15 @@
+name: Syft SBOM
+on: [push, pull_request]
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anchore/sbom-action@v0
+        with:
+          format: cyclonedx-json
+          output-file: sbom-cyclonedx.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom-cyclonedx
+          path: sbom-cyclonedx.json

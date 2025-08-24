@@ -1,0 +1,15 @@
+name: Trivy (FS)
+on: [push, pull_request]
+jobs:
+  trivy-fs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aquasecurity/setup-trivy@v0.2.2
+      - name: Scan filesystem
+        run: |
+          trivy fs --severity HIGH,CRITICAL --exit-code 0 --format table -o trivy_fs.txt .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report
+          path: trivy_fs.txt
