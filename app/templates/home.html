@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container text-center mt-5">
-  <h1 class="display-5">Welcome</h1>
-  <p class="lead">Hello, Secure-ish World! This is my Capstone demo app.</p>
-  <hr class="my-4">
+<h1>Welcome to Vulnerable Demo App</h1>
+<p>This app contains intentional security vulnerabilities for testing CI/CD security scanning.</p>
 
-  <p class="text-muted mb-1">Capstone demo app — intentionally vulnerable 🚧</p>
-  <p class="text-muted" style="font-size: 0.8rem;">© 2025 Jigyasa — Secure-SDLC Capstone</p>
-</div>
+<h2>Test Vulnerabilities:</h2>
+<ul>
+    <li><a href="/echo?message=<script>alert('XSS')</script>">XSS Test</a></li>
+    <li><a href="/login">SQL Injection Test (try: admin' OR '1'='1)</a></li>
+    <li><a href="/ping">Command Injection Test</a></li>
+    <li><a href="/debug">Information Disclosure</a></li>
+</ul>
 {% endblock %}

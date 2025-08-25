@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  <h2>Admin Dashboard</h2>
-  <p>Welcome, {{ session.get('user') }}!</p>
-  <p>Total feedback messages: {{ feedback_count }}</p>
-  <p>This page is “protected” by weak login and vulnerable to SQLi bypass.</p>
+<h1>Admin Panel</h1>
+<p>🔓 This page should be protected but isn't!</p>
+<p>User ID: {{ session.get('user_id', 'Not logged in') }}</p>
+<p>Username: {{ session.get('username', 'Not logged in') }}</p>
 {% endblock %}
